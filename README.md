@@ -1,6 +1,6 @@
 # homeprime
 
-Version 0.1.0
+Version 0.1.1
 -----------------
 https://github.com/samreynoldsmath/homeprime
 
@@ -12,19 +12,20 @@ Given an integer $n > 1$, consider the integer $m$ obtained by concatenating
 the prime factors of $n$ (in ascending order, with repeats, and in base $10$).
 Iterate this map until a prime number is obtained.
 This prime number is called the **home prime** of $n$,
-and is denoted by HP$(n)$.
+and is denoted by $\text{HP}(n)$.
 
 **Example:** $99$ factors as $3 \cdot 3 \cdot 11$.
 After concatenation, we factor $3311$ as $7 \cdot 11 \cdot 43$.
-Concatenation gives $71143$, which is prime, so HP$(99) = 71143$.
+Concatenation gives $71143$, which is prime, so $\text{HP}(99) = 71143$.
 
-The smallest natural number $n$ for which HP$(n)$ is unknown is $n = 49$.
+The smallest natural number $n$ for which $\text{HP}(n)$ is unknown is
+$n = 49$.
 
 *World of Numbers* has a great article here:
 http://www.worldofnumbers.com/topic1.htm
 
 -----------------
-Copyright (C) 2023 Samuel E. Reynolds.
+Copyright (C) 2022 - 2023 Samuel E. Reynolds.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
