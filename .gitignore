@@ -1,5 +1,6 @@
 # FOLDERS
 **/__pycache__/
+**/ref
 
 # FILES
 *.log

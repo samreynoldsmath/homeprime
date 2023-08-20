@@ -7,7 +7,7 @@ Plots of home prime distribution of composite numbers
 import matplotlib.pyplot as plt
 import numpy as np
 from homeprime.homeprime import homeprime
-from homeprime.primality import probably_prime
+from homeprime.primality import is_prime
 
 def main():
 	# generate list of composite integers
@@ -17,7 +17,7 @@ def main():
 	n = []
 	hp = []
 	for k in range(nmin, nmax + 1):
-		if not (probably_prime(k) or k in skip):
+		if not (is_prime(k) or k in skip):
 			p = homeprime(k, verbose=True)
 			n.append(k)
 			hp.append(p)

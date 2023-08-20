@@ -1,7 +1,7 @@
 """
 Example 0
 
-Factoring
+Factoring a large integer
 """
 
 from homeprime.factor import factor

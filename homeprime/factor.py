@@ -10,15 +10,17 @@ class factorization:
 	calculation was performed correctly, as well as a sort method.
 	"""
 	def __init__(self, n: int) -> None:
+		if type(n) != int:
+			TypeError('n must be an integer at least 2')
 		if n < 2:
-			raise Exception('Must have n > 1')
+			ValueError('n must be an integer at least 2')
 		self.n = n
 		self.unfactored_part = n
 		self.factors = []
 		self.num_factors = 0
 		self.success = False
 
-	def set_factor(self, p: int):
+	def set_factor(self, p: int) -> None:
 		"""
 		Determine if p is a factor, and if it is, add to factor list.
 
@@ -32,7 +34,7 @@ class factorization:
 				self.unfactored_part = self.unfactored_part // p
 		self.check_success()
 
-	def check_success(self):
+	def check_success(self) -> None:
 		"""Check all conditions of factor list"""
 		is_nontrivial = self.check_factors_nontrivial()
 		is_product = self.check_factors_product()
@@ -53,7 +55,7 @@ class factorization:
 				m *= p
 		return m == self.n
 
-	def sort(self):
+	def sort(self) -> None:
 		"""Sort the factors in ascending order"""
 		self.factors.sort()
 
@@ -84,13 +86,13 @@ def factor(n: int) -> factorization:
 	# Pollard's rho algorithm
 	while not f.success:
 		m = f.unfactored_part
-		if primality.probably_prime(m):
+		if primality.is_prime(m):
 			# if remaining part to be factored is prime, we are done
 			f.set_factor(m)
 		else:
 			# factor the remaining part with Pollard's rho
 			p = _get_single_factor_pollard(m)
-			if primality.probably_prime(p):
+			if primality.is_prime(p):
 				# include only prime factors in the list
 				f.set_factor(p)
 			else:
@@ -109,8 +111,8 @@ def _get_single_factor_pollard(n: int) -> int:
 	Returns a single factor of n (odd and composite) using Pollard's rho method
 	"""
 	factor_found = False
-	c = randint(1, n - 1)
-	while not factor_found and c < n:
+	while not factor_found:
+		c = randint(1, n - 1)
 		x = randint(1, n - 1)
 		y = x
 		d = 1
@@ -122,10 +124,10 @@ def _get_single_factor_pollard(n: int) -> int:
 			y = _pollard_mixing_func(y, c, n)
 			y = _pollard_mixing_func(y, c, n)
 
-			d = gcd(x - y, n)
+			# candidate factor
+			d = gcd(abs(x - y), n)
 		if d < n:
 			factor_found = True
-		c += 1
 	return d
 
 def _pollard_mixing_func(x, c, n):
