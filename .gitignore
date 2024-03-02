@@ -1,6 +1,9 @@
 # FOLDERS
 **/__pycache__/
 **/ref
+bin/
+lib/
 
 # FILES
 *.log
+pyvenv.cfg

@@ -1,54 +1,55 @@
 from .factor import factor
 
-def homeprime(n: int, depth: int='inf', verbose: bool=False):
-	"""
-	Returns the home prime of n.
 
-	Set maximum number of function compositions to m with depth=m.
+def homeprime(n: int, depth: int = "inf", verbose: bool = False):
+    """
+    Returns the home prime of n.
 
-	Set verbose=True to get terminal output.
-	"""
-	if depth == 'inf':
-		depth = float('inf')
-	is_prime = False
+    Set maximum number of function compositions to m with depth=m.
 
-	# optional print to terminal
-	if verbose:
-		print(60 * '-')
-		print(f'0:\t', [n])
+    Set verbose=True to get terminal output.
+    """
+    if depth == "inf":
+        depth = float("inf")
+    is_prime = False
 
-	# depth counter
-	d = 0
+    # optional print to terminal
+    if verbose:
+        print(60 * "-")
+        print(f"0:\t", [n])
 
-	while not is_prime and d < depth:
-		d += 1
+    # depth counter
+    d = 0
 
-		# obtain the prime factorization
-		f = factor(n)
+    while not is_prime and d < depth:
+        d += 1
 
-		# safety check to ensure calculation succeeded
-		if not f.success:
-			print(f)
-			raise Exception('Factorization of {f.n} failed')
+        # obtain the prime factorization
+        f = factor(n)
 
-		# concatenate the digits
-		m = ''
-		for p in f.factors:
-			m += str(p)
-		n = int(m)
+        # safety check to ensure calculation succeeded
+        if not f.success:
+            print(f)
+            raise Exception("Factorization of {f.n} failed")
 
-		# check if prime
-		is_prime = f.num_factors == 1
+        # concatenate the digits
+        m = ""
+        for p in f.factors:
+            m += str(p)
+        n = int(m)
 
-		# optional print to terminal
-		if verbose:
-			print(f'{d}:\t', f.factors)
+        # check if prime
+        is_prime = f.num_factors == 1
 
-		# premature termination message
-		if d == depth and not is_prime:
-			msg = f'Maximum depth of {depth} reached'
-			msg += f' without finding home prime'
-			print(msg)
+        # optional print to terminal
+        if verbose:
+            print(f"{d}:\t", f.factors)
 
-	# assuming there is only one factor to be returned
-	return f.factors[0]
+        # premature termination message
+        if d == depth and not is_prime:
+            msg = f"Maximum depth of {depth} reached"
+            msg += f" without finding home prime"
+            print(msg)
+
+    # assuming there is only one factor to be returned
+    return f.factors[0]
